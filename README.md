@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/Avariya/requestIdBundle.svg?branch=master)](https://travis-ci.org/Avariya/requestIdBundle)
+[![Latest Stable Version](https://poser.pugx.org/avariya/request-id-bundle/v/stable)](https://packagist.org/packages/avariya/request-id-bundle)
+[![Total Downloads](https://poser.pugx.org/avariya/request-id-bundle/downloads)](https://packagist.org/packages/avariya/request-id-bundle)
+[![composer.lock](https://poser.pugx.org/avariya/request-id-bundle/composerlock)](https://packagist.org/packages/avariya/request-id-bundle)
+
 ## Installation
 
 ### ***Change composer.json***
