@@ -19,7 +19,7 @@ Add bundle to AppKernel:
 
     new \Avariya\RequestIdBundle\AvariyaRequestIdBundle(),
     
-### ***Add configuration***_(optional)_
+### ***Add configuration*** _(optional)_
 Default values:
 
     avariya_request_id:
@@ -34,5 +34,4 @@ or:
     avariya_request_id:
         monolog_support: false
         kernel_subscriber: false
-        header: X-Request-Id
         guzzle_middleware: false
