@@ -11,12 +11,12 @@
         }
     ],
     "require": {
-        "qandidate/stack-request-id": "^1.0",
-        "php-middleware/request-id": "^3.1"
+        "symfony/framework-bundle": "^3.3|^4.0",
+        "qandidate/stack-request-id": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.1",
-        "symfony/phpunit-bridge": "^3.0",
+        "symfony/phpunit-bridge": "^3.3|^4.0",
         "squizlabs/php_codesniffer": "^2.6",
         "sebastian/phpcpd": "^3.0",
         "phpmd/phpmd" : "^2.6",

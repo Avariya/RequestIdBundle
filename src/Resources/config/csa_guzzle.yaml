@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        public: false
+
+    Avariya\Middleware\RequestIdMiddleware: ~
+    avariya.middleware.request_id:
+        alias: Avariya\Middleware\RequestIdMiddleware
+
+    Qandidate\Stack\UuidRequestIdGenerator: ~
+    Qandidate\Stack\RequestIdGenerator:
+        alias: Qandidate\Stack\UuidRequestIdGenerator
