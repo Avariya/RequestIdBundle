@@ -15,8 +15,6 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 class AvariyaRequestIdExtension extends ConfigurableExtension
 {
     const CONFIGS_PATH = __DIR__.'/../Resources/config';
-    const DEFAULT_GUZZLE_TIMEOUT = 15;
-    const DEFAULT_GUZZLE_CONNECT_TIMEOUT = 2;
 
     /**
      * @inheritDoc
@@ -27,18 +25,28 @@ class AvariyaRequestIdExtension extends ConfigurableExtension
 
         $loader->load('qandidate_stack.yaml');
 
-        if ($configuration['monolog_support'] && $container->hasDefinition('monolog.logger')) {
+        if ($configuration['monolog_support']) {
             $loader->load('monolog.yaml');
         }
 
-        if ($configuration['kernel_subscriber'] && $container->hasDefinition('kernel')) {
+        if ($configuration['kernel_subscriber']) {
             $loader->load('kernel.yaml');
         }
 
+        if ($configuration['guzzle_middleware']['enabled']) {
+            $loader->load('guzzle_middleware.yaml');
+
+            if (isset($configuration['guzzle_middleware']['guzzle_tag'])) {
+                $container->getDefinition('avariya.middleware.request_id')
+                    ->addTag(
+                        $configuration['guzzle_middleware']['guzzle_tag'],
+                        [
+                            'alias' => 'request_id_middleware',
+                        ]
+                    );
+            }
+        }
+
         $container->setParameter('avariya.request_id.header', (string)$configuration['header']);
-
-        $loader->load('csa_guzzle.yaml');
-
-        var_dump($configuration);
     }
 }

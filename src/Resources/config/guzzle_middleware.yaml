@@ -8,5 +8,3 @@ services:
           - '@Qandidate\Stack\UuidRequestIdGenerator'
           - '@request_stack'
           - '%avariya.request_id.header%'
-        tags:
-          - { name: csa_guzzle.middleware, alias: request_id_middleware }
