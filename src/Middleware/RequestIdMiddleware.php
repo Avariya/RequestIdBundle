@@ -47,14 +47,8 @@ final class RequestIdMiddleware
      */
     public function __invoke(callable $handler): \Closure
     {
-        try {
-            $requestId = $this->getRequestId();
-        } catch (RequestIdNotFoundException $exception) {
-            $requestId = $this->requestIdGenerator->generate();
-        }
-
-        return function ($request, array $options) use ($handler, $requestId) {
-            $request = $this->beforeCall($request, $requestId);
+        return function ($request, array $options) use ($handler) {
+            $request = $this->beforeCall($request);
 
             return $handler($request, $options);
         };
@@ -75,13 +69,18 @@ final class RequestIdMiddleware
 
     /**
      * @param RequestInterface $request
-     * @param string $requestId
      * @return RequestInterface
      */
-    private function beforeCall(RequestInterface $request, string $requestId): RequestInterface
+    private function beforeCall(RequestInterface $request): RequestInterface
     {
         if ($request->hasHeader($this->header)) {
             return $request;
+        }
+
+        try {
+            $requestId = $this->getRequestId();
+        } catch (RequestIdNotFoundException $exception) {
+            $requestId = $this->requestIdGenerator->generate();
         }
 
         return $request->withHeader(
