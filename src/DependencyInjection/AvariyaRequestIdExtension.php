@@ -27,11 +27,11 @@ class AvariyaRequestIdExtension extends ConfigurableExtension
 
         $loader->load('qandidate_stack.yaml');
 
-        if ($configuration['monolog_support']) {
+        if ($configuration['monolog_support'] && $container->hasDefinition('monolog.logger')) {
             $loader->load('monolog.yaml');
         }
 
-        if ($configuration['kernel_subscriber']) {
+        if ($configuration['kernel_subscriber'] && $container->hasDefinition('kernel')) {
             $loader->load('kernel.yaml');
         }
 
