@@ -2,6 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/avariya/request-id-bundle/v/stable)](https://packagist.org/packages/avariya/request-id-bundle)
 [![Total Downloads](https://poser.pugx.org/avariya/request-id-bundle/downloads)](https://packagist.org/packages/avariya/request-id-bundle)
 [![composer.lock](https://poser.pugx.org/avariya/request-id-bundle/composerlock)](https://packagist.org/packages/avariya/request-id-bundle)
+[![Coverage](https://coveralls.io/repos/github/Avariya/requestIdBundle/badge.svg?branch=master)](https://coveralls.io/github/Avariya/requestIdBundle)
 
 ## Installation
 
