@@ -18,4 +18,5 @@ script:
 after_success:
   - ./bin/pdepend --summary-xml=/tmp/summary.xml --jdepend-chart=/tmp/jdepend.svg --overview-pyramid=/tmp/pyramid.svg src
   - ./bin/phploc src
-  - echo "Outputting clover coverage report:"; cat ./clover.xml
+  - echo "Outputting clover coverage report:"; cat ./build/logs/clover.xml
+  - travis_retry php ./bin/coveralls

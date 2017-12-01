@@ -26,7 +26,8 @@
         "phploc/phploc": "^4.0",
         "phpstan/phpstan": "^0.8",
         "csa/guzzle-bundle": "^2.0",
-        "symfony/monolog-bundle": "^2.0|^3.0"
+        "symfony/monolog-bundle": "^2.0|^3.0",
+        "php-coveralls/php-coveralls": "^1.0"
     },
     "autoload": {
         "psr-4": { "Avariya\\RequestIdBundle\\": "src/" }
