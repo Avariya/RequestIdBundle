@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class RequestIdMiddleware
 {
-    const REQUEST_ID_HEADER = 'X-Request-Id';
-
     /**
      * @var RequestIdGenerator
      */
@@ -23,16 +21,24 @@ final class RequestIdMiddleware
     private $request;
 
     /**
+     * @var string
+     */
+    private $header;
+
+    /**
      * RequestIdMiddleware constructor.
      * @param RequestIdGenerator $requestIdGenerator
      * @param RequestStack $requestStack
+     * @param string $header
      */
     public function __construct(
         RequestIdGenerator $requestIdGenerator,
-        RequestStack $requestStack
+        RequestStack $requestStack,
+        string $header
     ) {
         $this->requestIdGenerator = $requestIdGenerator;
         $this->request = $requestStack->getCurrentRequest();
+        $this->header = $header;
     }
 
     /**
@@ -60,11 +66,11 @@ final class RequestIdMiddleware
      */
     private function getRequestId(): string
     {
-        if (!$this->request->headers->has(self::REQUEST_ID_HEADER)) {
+        if (!$this->request->headers->has($this->header)) {
             throw new RequestIdNotFoundException();
         }
 
-        return $this->request->headers->get(self::REQUEST_ID_HEADER);
+        return $this->request->headers->get($this->header);
     }
 
     /**
@@ -74,12 +80,12 @@ final class RequestIdMiddleware
      */
     private function beforeCall(RequestInterface $request, string $requestId): RequestInterface
     {
-        if ($request->hasHeader(self::REQUEST_ID_HEADER)) {
+        if ($request->hasHeader($this->header)) {
             return $request;
         }
 
         return $request->withHeader(
-            self::REQUEST_ID_HEADER,
+            $this->header,
             $requestId
         );
     }

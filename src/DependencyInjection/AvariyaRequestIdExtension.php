@@ -21,13 +21,24 @@ class AvariyaRequestIdExtension extends ConfigurableExtension
     /**
      * @inheritDoc
      */
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $configuration, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(self::CONFIGS_PATH));
-        $loader->load('csa_guzzle.yaml');
-        $loader->load('kernel.yaml');
-        $loader->load('monolog.yaml');
 
-        var_dump($mergedConfig);
+        $loader->load('qandidate_stack.yaml');
+
+        if ($configuration['monolog_support']) {
+            $loader->load('monolog.yaml');
+        }
+
+        if ($configuration['kernel_subscriber']) {
+            $loader->load('kernel.yaml');
+        }
+
+        $container->setParameter('avariya.request_id.header', (string)$configuration['header']);
+
+        $loader->load('csa_guzzle.yaml');
+
+        var_dump($configuration);
     }
 }

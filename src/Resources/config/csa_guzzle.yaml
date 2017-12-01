@@ -1,14 +1,12 @@
 services:
     _defaults:
-        autowire: true
         public: false
 
     avariya.middleware.request_id:
         class: Avariya\RequestIdBundle\Middleware\RequestIdMiddleware
+        arguments:
+          - '@Qandidate\Stack\UuidRequestIdGenerator'
+          - '@request_stack'
+          - '%avariya.request_id.header%'
         tags:
           - { name: csa_guzzle.middleware, alias: request_id_middleware }
-        arguments: ['@Qandidate\Stack\UuidRequestIdGenerator', "@request_stack"]
-
-    Qandidate\Stack\UuidRequestIdGenerator: ~
-    Qandidate\Stack\RequestIdGenerator:
-        alias: Qandidate\Stack\UuidRequestIdGenerator

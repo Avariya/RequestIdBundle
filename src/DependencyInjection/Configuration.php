@@ -7,6 +7,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
+    const REQUEST_ID_HEADER = 'X-Request-Id';
+
     /**
      * @inheritDoc
      */
@@ -18,16 +20,20 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->booleanNode('monolog_support')
-                    ->defaultValue(true)
+                    ->defaultTrue()
                 ->end()
             ->end()
             ->children()
-                ->booleanNode('kernel_subscriber')
-                    ->defaultValue(true)
+                    ->booleanNode('kernel_subscriber')
+                    ->defaultTrue()
+                ->end()
+            ->end()
+            ->children()
+                ->scalarNode('header')
+                    ->defaultValue(self::REQUEST_ID_HEADER)
                 ->end()
             ->end()
         ;
-        //@todo: add guzzle is active and tag
 
         return $treeBuilder;
     }

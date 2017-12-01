@@ -1,8 +1,10 @@
 services:
     _defaults:
-        autowire: true
         public: false
 
     Avariya\RequestIdBundle\Listener\ExtendKernelListener:
+        arguments:
+          - '@Qandidate\Stack\RequestIdGenerator'
+          - '%avariya.request_id.header%'
         tags:
           - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 1024 }

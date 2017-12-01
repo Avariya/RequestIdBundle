@@ -8,8 +8,6 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 final class ExtendKernelListener
 {
-    const REQUEST_ID_HEADER = 'X-Request-Id';
-
     /**
      * @var string
      */
@@ -21,12 +19,19 @@ final class ExtendKernelListener
     private $requestIdGenerator;
 
     /**
+     * @var string
+     */
+    private $header;
+
+    /**
      * ExtendKernelListener constructor.
      * @param RequestIdGenerator $requestIdGenerator
+     * @param string $header
      */
-    public function __construct(RequestIdGenerator $requestIdGenerator)
+    public function __construct(RequestIdGenerator $requestIdGenerator, string $header)
     {
         $this->requestIdGenerator = $requestIdGenerator;
+        $this->header = $header;
     }
 
     /**
@@ -36,11 +41,11 @@ final class ExtendKernelListener
     {
         /** @var Request $request */
         $request = $event->getRequest();
-        if (!$request->headers->has(self::REQUEST_ID_HEADER)) {
-            $request->headers->set(self::REQUEST_ID_HEADER, $this->requestIdGenerator->generate());
+        if (!$request->headers->has($this->header)) {
+            $request->headers->set($this->header, $this->requestIdGenerator->generate());
         }
 
-        $this->requestId = $request->headers->get(self::REQUEST_ID_HEADER);
+        $this->requestId = $request->headers->get($this->header);
     }
 
     /**

@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: true
+        public: false
+
+    Qandidate\Stack\UuidRequestIdGenerator: ~
+    Qandidate\Stack\RequestIdGenerator:
+        alias: Qandidate\Stack\UuidRequestIdGenerator
