@@ -24,7 +24,9 @@ class AvariyaRequestIdExtension extends ConfigurableExtension
     protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(self::CONFIGS_PATH));
-        $loader->load('services.yml');
+        $loader->load('csa_guzzle.yaml');
+        $loader->load('kernel.yaml');
+        $loader->load('monolog.yaml');
 
         var_dump($mergedConfig);
     }
