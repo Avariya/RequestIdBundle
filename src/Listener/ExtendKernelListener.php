@@ -1,12 +1,12 @@
 <?php
 
-namespace Avariya\Listener;
+namespace Avariya\RequestIdBundle\Listener;
 
 use Qandidate\Stack\RequestIdGenerator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
-class ExtendKernelListener
+final class ExtendKernelListener
 {
     const REQUEST_ID_HEADER = 'X-Request-Id';
 
@@ -29,6 +29,9 @@ class ExtendKernelListener
         $this->requestIdGenerator = $requestIdGenerator;
     }
 
+    /**
+     * @param GetResponseEvent $event
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
         /** @var Request $request */

@@ -3,6 +3,6 @@ services:
         autowire: true
         public: false
 
-    Avariya\Listener\ExtendKernelListener:
+    Avariya\RequestIdBundle\Listener\ExtendKernelListener:
         tags:
           - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

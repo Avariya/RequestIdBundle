@@ -1,6 +1,6 @@
 <?php
 
-namespace Avariya\Middleware;
+namespace Avariya\RequestIdBundle\Middleware;
 
 use Psr\Http\Message\RequestInterface;
 use Qandidate\Stack\RequestIdGenerator;
