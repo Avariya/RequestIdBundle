@@ -1,0 +1,42 @@
+{
+    "name": "avariya/request-id-bundle",
+    "license": "MIT",
+    "description": "Adding request id to project flow",
+    "keywords": ["request id", "debug"],
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Oleksii Romanchenko",
+            "email": "avariya1@gmail.com"
+        }
+    ],
+    "require": {
+        "qandidate/stack-request-id": "^1.0",
+        "php-middleware/request-id": "^3.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.1",
+        "symfony/phpunit-bridge": "^3.0",
+        "squizlabs/php_codesniffer": "^2.6",
+        "sebastian/phpcpd": "^3.0",
+        "phpmd/phpmd" : "^2.6",
+        "pdepend/pdepend": "^2.5",
+        "phploc/phploc": "^4.0",
+        "phpstan/phpstan": "^0.8",
+        "csa/guzzle-bundle": "^2.0",
+        "symfony/monolog-bundle": "^2.0|^3.0"
+    },
+    "autoload": {
+        "psr-4": { "Avariya\\RequestIdBundle\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\Avariya\\RequestIdBundle\\": "tests/" }
+    },
+    "suggest": {
+        "csa/guzzle-bundle": "Pass request id to all called services",
+        "symfony/monolog-bundle": "Log request id"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
