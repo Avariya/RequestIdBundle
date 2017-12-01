@@ -12,6 +12,7 @@
     ],
     "require": {
         "symfony/framework-bundle": "^3.3|^4.0",
+        "symfony/expression-language": "^3.3|^4.0",
         "qandidate/stack-request-id": "^1.0"
     },
     "require-dev": {
