@@ -2,6 +2,7 @@
 
 namespace Avariya\RequestIdBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -15,6 +16,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
+        /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->root('avariya_request_id');
 
         $rootNode
