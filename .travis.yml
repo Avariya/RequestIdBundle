@@ -10,11 +10,11 @@ before_script:
   - composer global require hirak/prestissimo
   - composer install
 script:
-  - phpunit
+  - ./bin/phpunit
   - ./bin/phpcs --standard=psr2 src
   - ./bin/phpmd src text cleancode,codesize,controversial,design,unusedcode
   - ./bin/phpcpd src
-  - ./bin/phpstan analyse -n --no-ansi --level=2 src tests
+  - ./bin/phpstan analyse -n --no-ansi src tests
 after_success:
   - ./bin/pdepend --summary-xml=/tmp/summary.xml --jdepend-chart=/tmp/jdepend.svg --overview-pyramid=/tmp/pyramid.svg src
   - ./bin/phploc src
